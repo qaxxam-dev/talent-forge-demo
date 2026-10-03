@@ -166,28 +166,11 @@ Open your browser and navigate to **`http://localhost:5173`** to access the comp
 
 ---
 
-## 5. Hackathon Submission Dossier
-
-| Field | Submission Specification |
-| :--- | :--- |
-| **Project Title** | **TalentForge: Automated Day-Zero Technical Verification Engine** |
-| **Event Name** | Founder's Code 2026 (24-Hour National Build Sprint) |
-| **Selected Track** | **The Future of Work** |
-| **Academic Co-Host** | Sri Muthukumaran Institute of Technology (SMIT), Autonomous NAAC 'A' Grade |
-| **Industry Co-Host** | CIEL HR Group (Enterprise HR Conglomerate, 4,000+ Corporate Clients) |
-| **Core Technologies** | React 19, Vite, Tailwind CSS v4, Shadcn UI, TypeScript, Web Speech API |
-| **Pitch & Demo Guide** | [**`JURY_DEMO_SCRIPT.md`**](./JURY_DEMO_SCRIPT.md) (Complete 3-Minute Script & Q&A Defense) |
-| **Prototype URL** | Running locally on `http://localhost:5173` (100% offline-ready simulation) |
-
----
 
 ## 6. Project Directory Layout
 
 ```
 talent-forge/
-├── JURY_DEMO_SCRIPT.md      # 3-Minute Pitch Script & High-Probability Q&A Defense
-├── knowledge-base.md        # Comprehensive Hackathon Profile & Architecture Specs
-├── README.md                # Project Overview & Technical Architecture Dossier
 └── frontend/                # Complete React 19 + Shadcn UI Web Application
     ├── src/
     │   ├── components/
