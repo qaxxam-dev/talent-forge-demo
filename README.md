@@ -167,7 +167,7 @@ Open your browser and navigate to **`http://localhost:5173`** to access the comp
 ---
 
 
-## 6. Project Directory Layout
+## 5. Project Directory Layout
 
 ```
 talent-forge/
