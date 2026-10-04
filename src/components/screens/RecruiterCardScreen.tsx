@@ -5,8 +5,10 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import {
   DEMO_RECRUITER_DOSSIERS,
+  DEMO_VERIFIED_URLS,
   type CandidatePersona,
   type RecruiterDossier,
+  type VerifiedSubmissionUrls,
 } from '@/data/demoData'
 import {
   ShieldCheck,
@@ -19,19 +21,29 @@ import {
   Sparkles,
   Building2,
   FileCheck2,
+  ExternalLink,
+  Code2,
+  Globe,
 } from 'lucide-react'
 
 interface RecruiterCardScreenProps {
   persona: CandidatePersona
-  onBackToViva: () => void
+  verifiedUrls?: { repoUrl: string; liveDemoUrl: string }
+  onBackToConfirmation: () => void
   onRestartDemo: () => void
 }
 
 export const RecruiterCardScreen: React.FC<RecruiterCardScreenProps> = ({
   persona,
-  onBackToViva,
+  verifiedUrls,
+  onBackToConfirmation,
   onRestartDemo,
 }) => {
+  const defaultUrls: VerifiedSubmissionUrls =
+    DEMO_VERIFIED_URLS[persona.id] || DEMO_VERIFIED_URLS['persona-1']
+  const activeRepoUrl = verifiedUrls?.repoUrl || defaultUrls.repoUrl
+  const activeLiveDemoUrl = verifiedUrls?.liveDemoUrl || defaultUrls.liveDemoUrl
+
   const dossier: RecruiterDossier =
     DEMO_RECRUITER_DOSSIERS[persona.id] || DEMO_RECRUITER_DOSSIERS['persona-1']
 
@@ -56,16 +68,16 @@ export const RecruiterCardScreen: React.FC<RecruiterCardScreenProps> = ({
           <Button
             variant="ghost"
             size="sm"
-            onClick={onBackToViva}
+            onClick={onBackToConfirmation}
             className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground -ml-2"
           >
             <ArrowLeft className="h-3.5 w-3.5 mr-1" />
-            Oral Viva
+            4. Confirmation
           </Button>
           <span className="text-muted-foreground/40">/</span>
           <span className="text-muted-foreground">{persona.name}</span>
           <span className="text-muted-foreground/40">/</span>
-          <span className="font-medium text-foreground">CIEL HR Verification Dossier</span>
+          <span className="font-medium text-foreground">5. Technical Verification Dossier</span>
         </div>
 
         <Button
@@ -85,7 +97,7 @@ export const RecruiterCardScreen: React.FC<RecruiterCardScreenProps> = ({
           <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-medium">
             <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
             <span>
-              <strong>Candidate Shortlisted:</strong> {persona.name} has been fast-tracked to the hiring manager's final technical round. CIEL ATS status updated.
+              <strong>Candidate Shortlisted:</strong> {persona.name} has been fast-tracked to the hiring manager's final technical round. ATS status updated via integration webhook.
             </span>
           </div>
           <Badge className="bg-emerald-600 text-white text-[10px]">Shortlisted</Badge>
@@ -99,7 +111,7 @@ export const RecruiterCardScreen: React.FC<RecruiterCardScreenProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="text-xs font-normal">
-                  CIEL HR Certified Candidate
+                  Technically Verified Candidate
                 </Badge>
                 <Badge variant="outline" className="text-xs font-mono text-muted-foreground">
                   Certificate: {dossier.dpdpCertificationId}
@@ -134,6 +146,46 @@ export const RecruiterCardScreen: React.FC<RecruiterCardScreenProps> = ({
 
         <CardContent className="space-y-6 pt-0">
           <Separator />
+
+          {/* VERIFIED CODEBASE & LIVE PRODUCTION DEMO AUDIT BAR */}
+          <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-lg bg-muted/40 border text-xs">
+            <div className="space-y-0.5">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="text-[10px] text-emerald-600 dark:text-emerald-400 border-emerald-500/30 gap-1 font-mono">
+                  <ShieldCheck className="h-3 w-3" />
+                  <span>Authorship Verified &amp; Signed</span>
+                </Badge>
+                <span className="text-[11px] text-muted-foreground hidden sm:inline">
+                  SHA-256 seal &amp; AST diff match candidate oral defense.
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                type="button"
+                onClick={() => window.open(activeRepoUrl, '_blank')}
+                className="h-8 text-xs gap-1.5"
+              >
+                <Code2 className="h-3.5 w-3.5 text-muted-foreground" />
+                <span>Verified Repo</span>
+                <ExternalLink className="h-3 w-3 text-muted-foreground" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                type="button"
+                onClick={() => window.open(activeLiveDemoUrl, '_blank')}
+                className="h-8 text-xs gap-1.5"
+              >
+                <Globe className="h-3.5 w-3.5 text-muted-foreground" />
+                <span>Live Production Sandbox</span>
+                <ExternalLink className="h-3 w-3 text-muted-foreground" />
+              </Button>
+            </div>
+          </div>
 
           {/* SECTION 1: BUSINESS-IMPACT TRANSLATION LAYER */}
           <div className="space-y-3">

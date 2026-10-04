@@ -103,7 +103,7 @@ export const KanbanScreen: React.FC<KanbanScreenProps> = ({
           </div>
           <h1 className="text-xl font-semibold tracking-tight">Spec-Driven Sprint Scaffolder</h1>
           <p className="text-xs text-muted-foreground">
-            Bypassing passive tutorials. Role-tailored engineering blueprint closing verified qualification gaps.
+            Bypassing passive tutorials: role-tailored engineering blueprint converting qualification gaps into verifiable technical evidence.
           </p>
         </div>
 

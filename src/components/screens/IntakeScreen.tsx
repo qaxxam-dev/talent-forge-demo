@@ -39,11 +39,16 @@ export const IntakeScreen: React.FC<IntakeScreenProps> = ({
   return (
     <div className="w-full max-w-4xl mx-auto py-4 space-y-6">
       {/* Top Header: Title & Action */}
-      <div className="flex items-center justify-between pb-2 border-b">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">Candidate Intake & Verification</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">
-            Local DPDP Act sanitization and role gap analysis prototype.
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-semibold tracking-tight">Candidate Intake &amp; Technical Verification</h1>
+            <Badge variant="outline" className="text-[10px] font-normal">
+              Integration Ingest Layer
+            </Badge>
+          </div>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Ingesting candidate profile and role requirements from existing hiring workflows with local DPDP Act sanitization.
           </p>
         </div>
 
@@ -51,7 +56,7 @@ export const IntakeScreen: React.FC<IntakeScreenProps> = ({
           onClick={handleShuffle}
           variant="outline"
           size="sm"
-          className="gap-2 text-xs"
+          className="gap-2 text-xs shrink-0"
         >
           <Shuffle className="h-3.5 w-3.5" />
           <span>Randomize Persona ({personaIndex + 1}/{DEMO_PERSONAS.length})</span>

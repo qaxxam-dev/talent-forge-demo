@@ -23,13 +23,13 @@ import {
 interface VivaScreenProps {
   persona: CandidatePersona
   onBackToKanban: () => void
-  onProceedToRecruiterCard: (persona: CandidatePersona) => void
+  onProceedToConfirmation: (persona: CandidatePersona) => void
 }
 
 export const VivaScreen: React.FC<VivaScreenProps> = ({
   persona,
   onBackToKanban,
-  onProceedToRecruiterCard,
+  onProceedToConfirmation,
 }) => {
   // Load questions or fallback
   const questions: VivaQuestion[] =
@@ -100,7 +100,7 @@ export const VivaScreen: React.FC<VivaScreenProps> = ({
             Sprint Kanban
           </Button>
           <span className="text-muted-foreground/40">/</span>
-          <span className="text-xs text-muted-foreground">Module 4: Code-Defend Protocol</span>
+          <span className="text-xs text-muted-foreground">Module 3: Code-Defend Protocol</span>
         </div>
 
         <Card>
@@ -238,10 +238,10 @@ export const VivaScreen: React.FC<VivaScreenProps> = ({
 
             <div className="pt-2 border-t">
               <Button
-                onClick={() => onProceedToRecruiterCard(persona)}
+                onClick={() => onProceedToConfirmation(persona)}
                 className="w-full gap-2 text-xs"
               >
-                <span>Generate CIEL HR Recruiter Verification Artifact (Screen 4)</span>
+                <span>Proceed to Authorship &amp; Repository Verification (Screen 4)</span>
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>

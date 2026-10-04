@@ -5,13 +5,15 @@ import { LandingScreen } from '@/components/screens/LandingScreen'
 import { IntakeScreen } from '@/components/screens/IntakeScreen'
 import { KanbanScreen } from '@/components/screens/KanbanScreen'
 import { VivaScreen } from '@/components/screens/VivaScreen'
+import { ConfirmationScreen } from '@/components/screens/ConfirmationScreen'
 import { RecruiterCardScreen } from '@/components/screens/RecruiterCardScreen'
 import { DEMO_PERSONAS, type CandidatePersona } from '@/data/demoData'
 import { Info } from 'lucide-react'
 
 export default function App() {
-  const [activeScreen, setActiveScreen] = useState<'landing' | 'intake' | 'kanban' | 'viva' | 'recruiter'>('landing')
+  const [activeScreen, setActiveScreen] = useState<'landing' | 'intake' | 'kanban' | 'viva' | 'confirmation' | 'recruiter'>('landing')
   const [selectedPersona, setSelectedPersona] = useState<CandidatePersona>(DEMO_PERSONAS[0])
+  const [verifiedUrls, setVerifiedUrls] = useState<{ repoUrl: string; liveDemoUrl: string } | undefined>(undefined)
   const [showArchInfo, setShowArchInfo] = useState(false)
 
   const handleProceedToKanban = (persona: CandidatePersona) => {
@@ -24,8 +26,19 @@ export default function App() {
     setActiveScreen('viva')
   }
 
-  const handleProceedToRecruiterCard = (persona: CandidatePersona) => {
+  const handleProceedToConfirmation = (persona: CandidatePersona) => {
     setSelectedPersona(persona)
+    setActiveScreen('confirmation')
+  }
+
+  const handleProceedToRecruiterCard = (
+    persona: CandidatePersona,
+    urls?: { repoUrl: string; liveDemoUrl: string }
+  ) => {
+    setSelectedPersona(persona)
+    if (urls) {
+      setVerifiedUrls(urls)
+    }
     setActiveScreen('recruiter')
   }
 
@@ -42,7 +55,7 @@ export default function App() {
             Prototype
           </Badge>
           <span className="hidden sm:inline text-xs text-muted-foreground">
-            Day-Zero Technical Verification Engine
+            Technical Verification Infrastructure for Existing Hiring Platforms
           </span>
         </div>
 
@@ -81,12 +94,20 @@ export default function App() {
             3. Oral Viva
           </Button>
           <Button
+            variant={activeScreen === 'confirmation' ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setActiveScreen('confirmation')}
+            className="text-xs h-8"
+          >
+            4. Authorship Confirmation
+          </Button>
+          <Button
             variant={activeScreen === 'recruiter' ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setActiveScreen('recruiter')}
             className="text-xs h-8"
           >
-            4. Recruiter Card
+            5. Verification Dossier
           </Button>
         </div>
 
@@ -109,7 +130,7 @@ export default function App() {
         <div className="border-b bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
           <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
             <p className="leading-relaxed">
-              <strong className="text-foreground">System Architecture:</strong> React/Tailwind frontend &rarr; FastAPI async gateway &rarr; local regex DPDP tokenizer &rarr; Supabase PostgreSQL &rarr; structured LLM evaluation schemas. (Running in offline frontend prototype mode).
+              <strong className="text-foreground">Integration-Ready Architecture:</strong> Existing ATS / Hiring Platform &rarr; TalentForge API Gateway &rarr; Local Regex DPDP Sanitizer &rarr; Verification Engine (Spec Scaffolder + Code-Defend Oral Defense) &rarr; Verification Dossier returned to hiring system. (Running in offline prototype mode).
             </p>
             <Button
               variant="ghost"
@@ -151,6 +172,14 @@ export default function App() {
           <VivaScreen
             persona={selectedPersona}
             onBackToKanban={() => setActiveScreen('kanban')}
+            onProceedToConfirmation={handleProceedToConfirmation}
+          />
+        )}
+
+        {activeScreen === 'confirmation' && (
+          <ConfirmationScreen
+            persona={selectedPersona}
+            onBackToViva={() => setActiveScreen('viva')}
             onProceedToRecruiterCard={handleProceedToRecruiterCard}
           />
         )}
@@ -158,7 +187,8 @@ export default function App() {
         {activeScreen === 'recruiter' && (
           <RecruiterCardScreen
             persona={selectedPersona}
-            onBackToViva={() => setActiveScreen('viva')}
+            verifiedUrls={verifiedUrls}
+            onBackToConfirmation={() => setActiveScreen('confirmation')}
             onRestartDemo={() => setActiveScreen('intake')}
           />
         )}
@@ -167,7 +197,7 @@ export default function App() {
       {/* Clean Footer */}
       <footer className="border-t py-3 px-6 text-xs text-muted-foreground flex items-center justify-between">
         <span>Founder's Code 2026 • Future of Work</span>
-        <span>SMIT Chennai &amp; CIEL HR Group</span>
+        <span>Technical Verification Layer • Integration-Ready Architecture</span>
       </footer>
     </div>
   )

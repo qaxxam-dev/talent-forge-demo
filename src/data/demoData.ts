@@ -85,6 +85,15 @@ export interface RecruiterDossier {
   technicalChecklist: Array<{ name: string; status: 'VERIFIED'; detail: string }>
 }
 
+export interface VerifiedSubmissionUrls {
+  repoUrl: string
+  liveDemoUrl: string
+  branchName: string
+  lastCommitHash: string
+  buildStatus: 'VERIFIED' | 'PASSING'
+  astMatchScore: number
+}
+
 export interface CandidatePersona {
   id: string
   name: string
@@ -514,19 +523,62 @@ export const DEMO_RECRUITER_DOSSIERS: Record<string, RecruiterDossier> = {
   }
 }
 
+export const DEMO_VERIFIED_URLS: Record<string, VerifiedSubmissionUrls> = {
+  'persona-1': {
+    repoUrl: 'https://github.com/aarav-sharma/apex-fintech-ledger',
+    liveDemoUrl: 'https://apex-ledger-demo.internal-staging.dev',
+    branchName: 'main',
+    lastCommitHash: '8f4b61c',
+    buildStatus: 'VERIFIED',
+    astMatchScore: 98,
+  },
+  'persona-2': {
+    repoUrl: 'https://github.com/sneha-reddy/enterprise-workflow-sync',
+    liveDemoUrl: 'https://workflow-sync-demo.internal-staging.dev',
+    branchName: 'main',
+    lastCommitHash: '4e8a1b9',
+    buildStatus: 'VERIFIED',
+    astMatchScore: 95,
+  },
+  'persona-3': {
+    repoUrl: 'https://github.com/vikram-malhotra/distributed-dashboard-core',
+    liveDemoUrl: 'https://dashboard-core-demo.internal-staging.dev',
+    branchName: 'main',
+    lastCommitHash: '9c3b5d2',
+    buildStatus: 'VERIFIED',
+    astMatchScore: 94,
+  },
+  'persona-4': {
+    repoUrl: 'https://github.com/ananya-iyer/qdrant-rag-service',
+    liveDemoUrl: 'https://synthetix-rag-demo.internal-staging.dev',
+    branchName: 'main',
+    lastCommitHash: '2d8f9a1',
+    buildStatus: 'VERIFIED',
+    astMatchScore: 96,
+  },
+  'persona-5': {
+    repoUrl: 'https://github.com/rohan-verma-dev/distributed-order-bus',
+    liveDemoUrl: 'https://order-bus-demo.internal-staging.dev',
+    branchName: 'main',
+    lastCommitHash: '3a7c4e5',
+    buildStatus: 'VERIFIED',
+    astMatchScore: 99,
+  },
+}
+
 export const DEMO_PERSONAS: CandidatePersona[] = [
   {
     id: 'persona-1',
     name: 'Aarav Sharma',
     archetype: 'Tier-3 Engineering Fresher (B.Tech CS)',
-    education: 'B.Tech Computer Science, SMIT Chennai (2026 Grad)',
+    education: 'B.Tech Computer Science, Regional Institute of Technology (2026 Grad)',
     phone: '+91 98765 43210',
     email: 'aarav.sharma.dev@gmail.com',
     location: 'Chennai, Tamil Nadu, India',
     hasPortfolio: false,
     rawResumeText: `AARAV SHARMA
 Email: aarav.sharma.dev@gmail.com | Phone: +91 98765 43210 | Location: Chennai, Tamil Nadu
-Education: Sri Muthukumaran Institute of Technology (SMIT), B.Tech CSE (GPA: 7.8/10)
+Education: Regional Institute of Technology (Autonomous), B.Tech CSE (GPA: 7.8/10)
 
 TECHNICAL SKILLS:
 Languages: Python, JavaScript, SQL
@@ -557,11 +609,11 @@ ACADEMIC COURSEWORK & MINI-PROJECTS:
       { type: 'PHONE', raw: '+91 98765 43210', token: '[REDACTED_PHONE_TOKEN]' },
       { type: 'EMAIL', raw: 'aarav.sharma.dev@gmail.com', token: '[REDACTED_EMAIL_TOKEN]' },
       { type: 'LOCATION', raw: 'Chennai, Tamil Nadu', token: '[REDACTED_LOCATION_TOKEN]' },
-      { type: 'COLLEGE', raw: 'Sri Muthukumaran Institute of Technology (SMIT)', token: '[REDACTED_INSTITUTION_TOKEN]' },
+      { type: 'COLLEGE', raw: 'Regional Institute of Technology (Autonomous)', token: '[REDACTED_INSTITUTION_TOKEN]' },
     ],
     targetJob: {
       title: 'Junior Backend & Cloud Platform Engineer',
-      company: 'CIEL FinTech Solutions (Banking Division)',
+      company: 'Apex FinTech Solutions (Banking Division)',
       clientTier: 'Enterprise Fortune 500',
       experienceRequired: '0-1 Years (Day-Zero Operational)',
       location: 'Bengaluru / Hybrid',
@@ -630,7 +682,7 @@ PORTFOLIO WORK:
     ],
     targetJob: {
       title: 'Fullstack Microservices Engineer',
-      company: 'CIEL Talent Logistics Tech',
+      company: 'Kredo Logistics Tech',
       clientTier: 'Series B Scaleup',
       experienceRequired: '0-2 Years',
       location: 'Hyderabad / Remote',
@@ -697,7 +749,7 @@ PRACTICAL EXPERIENCE:
     ],
     targetJob: {
       title: 'Fullstack Next.js Cloud Engineer',
-      company: 'CIEL Cloud Services Group',
+      company: 'Strata Cloud Services Group',
       clientTier: 'Global IT Conglomerate',
       experienceRequired: '1 Year Day-Zero Ready',
       location: 'Noida / Hybrid',
@@ -766,7 +818,7 @@ RESEARCH PROJECTS:
     ],
     targetJob: {
       title: 'Applied AI & Production Systems Engineer',
-      company: 'CIEL AI Innovation Labs',
+      company: 'Synthetix AI Innovation Labs',
       clientTier: 'Enterprise Fortune 500',
       experienceRequired: '0-1 Years',
       location: 'Bengaluru / Pune',
@@ -833,7 +885,7 @@ FEATURED REPOSITORY:
     ],
     targetJob: {
       title: 'High-Concurrency Backend Systems Engineer',
-      company: 'CIEL Enterprise Logistics',
+      company: 'Zenith Enterprise Logistics',
       clientTier: 'Enterprise Fortune 500',
       experienceRequired: '1 Year Day-Zero Ready',
       location: 'Chennai / Hybrid',
