@@ -21,27 +21,22 @@
 ## 1. Product Positioning & Strategic Vision
 
 ```mermaid
-flowchart LR
-    subgraph Platform["Existing Hiring Platform"]
-        ATS["ATS / Job Portal"]
-    end
+flowchart TD
+    P["<b>EXISTING HIRING PLATFORM</b><br/>ATS / Job Portal / HR Platform"]
+    TF["<b>TALENTFORGE</b><br/>Technical Verification Layer"]
+    S["<b>VERIFIED TECHNICAL SIGNAL</b>"]
 
-    subgraph TalentForge["TalentForge Layer"]
-        direction TB
-        DPDP["1. DPDP Sanitizer"]
-        Spec["2. Spec Scaffolder"]
-        Viva["3. Code-Defend Viva"]
-        Audit["4. Authorship Audit"]
-        DPDP --> Spec --> Viva --> Audit
-    end
+    P --> TF
+    TF --> S
 
-    ATS -->|"Candidate + JD"| DPDP
-    Audit -->|"Verified Dossier"| ATS
+    style P fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
+    style TF fill:#2563eb,stroke:#1d4ed8,stroke-width:2.5px,color:#ffffff
+    style S fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
 ```
 
-* **Candidates:** Prove execution capability through verified code and spoken defense.
-* **Recruiters:** Get plain-language business impact and Day-0 scores without reading raw diffs.
-* **Platforms:** Add technical verification infrastructure via API without rebuilding hiring workflows.
+* **Candidates:** Demonstrate technical understanding
+* **Recruiters:** Get stronger technical evidence
+* **Platforms:** Add verification through integration
 
 ---
 
@@ -53,23 +48,24 @@ flowchart LR
 
 ---
 
-## 3. The 5-Screen Verification Workflow
+## 3. The Verification Workflow
 
 ```mermaid
 flowchart LR
-    S1["1. Intake & DPDP"] --> S2["2. Spec Kanban"]
-    S2 --> S3["3. Oral Viva"]
-    S3 --> S4["4. Authorship"]
-    S4 --> S5["5. Recruiter Dossier"]
+    S1["<b>01 INTAKE</b><br/>Requirements + evidence"]
+    S2["<b>02 SPEC</b><br/>Role-specific technical task"]
+    S3["<b>03 BUILD / ANALYZE</b><br/>Create or inspect technical evidence"]
+    S4["<b>04 DEFEND</b><br/>Explain technical decisions"]
+    S5["<b>05 VERIFY</b><br/>Recruiter-ready result"]
 
-    S1 -.->|"Has Portfolio"| S3
+    S1 --> S2 --> S3 --> S4 --> S5
+
+    style S1 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
+    style S2 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
+    style S3 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
+    style S4 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
+    style S5 fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
 ```
-
-* **1. Candidate Intake (`IntakeScreen.tsx`):** In-memory local regex PII stripping (DPDP Act 2023) + role gap isolation.
-* **2. Spec Kanban (`KanbanScreen.tsx`):** 3-sprint engineering tasks with acceptance criteria & deliverable code.
-* **3. Oral Viva (`VivaScreen.tsx`):** Browser speech recognition, animated audio waveform, and trade-off defense.
-* **4. Authorship Confirmation (`ConfirmationScreen.tsx`):** Git commit signatures, live healthcheck ping, and SHA-256 seal.
-* **5. Recruiter Dossier (`RecruiterCardScreen.tsx`):** 94/100 Day-Zero score, code-to-business translation, and ATS webhook.
 
 ---
 
