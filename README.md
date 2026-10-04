@@ -20,8 +20,6 @@
 
 ## 1. Product Positioning & Strategic Vision
 
-> *Figure 1 — System positioning: TalentForge as an integrated technical verification layer within existing hiring platforms.*
-
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#f8fafc', 'primaryBorderColor': '#94a3b8', 'primaryTextColor': '#0f172a', 'lineColor': '#64748b', 'fontFamily': 'Inter, ui-sans-serif, system-ui, sans-serif'}, 'flowchart': {'curve': 'basis'}}}%%
 flowchart TD
@@ -51,8 +49,6 @@ flowchart TD
 ---
 
 ## 3. The Verification Workflow
-
-> *Figure 2 — Technical verification workflow: 5-step pipeline from platform intake through oral code defense to verified signal return.*
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#f8fafc', 'primaryBorderColor': '#94a3b8', 'primaryTextColor': '#0f172a', 'lineColor': '#64748b', 'fontFamily': 'Inter, ui-sans-serif, system-ui, sans-serif'}, 'flowchart': {'curve': 'basis'}}}%%
