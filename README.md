@@ -21,58 +21,27 @@
 ## 1. Product Positioning & Strategic Vision
 
 ```mermaid
-flowchart TD
-    subgraph Platforms["Existing Recruitment Platforms (ATS & Job Portals)"]
-        P1["Job Portals & Networks<br/>(Naukri, LinkedIn, Indeed)"]
-        P2["Applicant Tracking Systems<br/>(Greenhouse, Lever, Workday)"]
-        P3["Enterprise HR & Campus Portals"]
+flowchart LR
+    subgraph Platform["Existing Hiring Platform"]
+        ATS["ATS / Job Portal"]
     end
 
-    Platforms -->|"1. Ingest Candidate Profile + Job Requirements"| TF["<b>TalentForge Verification Layer</b><br/><i>(Specialized Infrastructure API)</i>"]
-
-    subgraph VerificationEngine["TalentForge Verification Engine"]
-        direction LR
-        V1["DPDP Act Local PII Sanitization"]
-        V2["3-Sprint Spec Scaffolder"]
-        V3["Code-Defend Spoken Viva"]
-        V4["Zero-Trust Authorship Seal"]
-        V1 --> V2 --> V3 --> V4
+    subgraph TalentForge["TalentForge Layer"]
+        direction TB
+        DPDP["1. DPDP Sanitizer"]
+        Spec["2. Spec Scaffolder"]
+        Viva["3. Code-Defend Viva"]
+        Audit["4. Authorship Audit"]
+        DPDP --> Spec --> Viva --> Audit
     end
 
-    TF --- VerificationEngine
-
-    VerificationEngine -->|"2. Emit Verified Capability Signal"| Dossier["<b>Executive Verification Dossier</b><br/>• 94/100 Day-Zero Operational Readiness<br/>• Plain-English Code-to-Business Impact<br/>• Audited SHA-256 Digital Verification Seal"]
-
-    Dossier -->|"3. Webhook Updates Candidate Status (Shortlisted)"| Platforms
-
-    classDef platformStyle fill:#f8fafc,stroke:#64748b,stroke-width:1.5px,color:#0f172a;
-    classDef tfStyle fill:#2563eb,stroke:#1d4ed8,stroke-width:2px,color:#ffffff;
-    classDef engineStyle fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px,color:#1e3a8a;
-    classDef dossierStyle fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#065f46;
-    class P1,P2,P3 platformStyle;
-    class TF tfStyle;
-    class V1,V2,V3,V4 engineStyle;
-    class Dossier dossierStyle;
+    ATS -->|"Candidate + JD"| DPDP
+    Audit -->|"Verified Dossier"| ATS
 ```
 
-```mermaid
-graph LR
-    subgraph Candidates["For Candidates"]
-        C1["Demonstrate execution over claims"]
-        C2["Turn skill gaps into 3-sprint evidence"]
-        C3["Defend architectural decisions"]
-    end
-    subgraph Recruiters["For Recruiters"]
-        R1["Plain-English business translation"]
-        R2["Pre-verified Day-Zero score (94/100)"]
-        R3["Zero time wasted reading raw Git diffs"]
-    end
-    subgraph Platforms["For Platforms"]
-        P1["Plug-and-play API infrastructure"]
-        P2["Zero need to build internal code sandboxes"]
-        P3["Immediate technical vetting moat"]
-    end
-```
+* **Candidates:** Prove execution capability through verified code and spoken defense.
+* **Recruiters:** Get plain-language business impact and Day-0 scores without reading raw diffs.
+* **Platforms:** Add technical verification infrastructure via API without rebuilding hiring workflows.
 
 ---
 
@@ -87,34 +56,20 @@ graph LR
 ## 3. The 5-Screen Verification Workflow
 
 ```mermaid
-flowchart TD
-    S1["<b>Screen 1: Candidate Intake & DPDP Gateway</b><br/>• In-memory local regex strips PII (DPDP Act 2023 Section 8)<br/>• Semantic Matcher isolates critical qualification gaps<br/>• Multi-persona selector across 5 Indian hiring archetypes"]
-    
-    S2["<b>Screen 2: Spec-Driven Sprint Kanban</b><br/>• Synthesizes 3-sprint engineering tasks: Schema, APIs, Deployment<br/>• Slide-over drawer exposes Acceptance Criteria & code snippets<br/>• 1-click Auto-Complete simulation helper for pitch mode"]
+flowchart LR
+    S1["1. Intake & DPDP"] --> S2["2. Spec Kanban"]
+    S2 --> S3["3. Oral Viva"]
+    S3 --> S4["4. Authorship"]
+    S4 --> S5["5. Recruiter Dossier"]
 
-    S3["<b>Screen 3: Code-Defend Spoken Viva</b><br/>• Digital Trust Declaration & pre-assessment authorship pledge<br/>• 3 dynamic trade-off questions (e.g. Pessimistic vs Optimistic locks)<br/>• Web Speech API console with real-time waveform & AI scoring (94%)"]
-
-    S4["<b>Screen 4: Authorship Confirmation & Telemetry</b><br/>• Zero-Trust AI Code Submission Policy enforcement<br/>• Automated GitHub commit signature check & live endpoint ping<br/>• Tamper-evident SHA-256 digital verification seal"]
-
-    S5["<b>Screen 5: Recruiter Verification Dossier</b><br/>• Executive Day-Zero Capability Score (94/100)<br/>• Code-to-Business Translation: Converts code into risk mitigation<br/>• 1-click 'Fast-Track to Technical Round' ATS update webhook"]
-
-    S1 -->|"Candidate lacks evidence"| S2
-    S2 -->|"Build readiness 100%"| S3
-    S1 -->|"Existing repo submitted"| S3
-    S3 -->|"Oral viva defended"| S4
-    S4 -->|"Authorship attested & sealed"| S5
-
-    classDef s1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a;
-    classDef s2 fill:#f5f3ff,stroke:#8b5cf6,stroke-width:2px,color:#4c1d95;
-    classDef s3 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#78350f;
-    classDef s4 fill:#fdf2f8,stroke:#ec4899,stroke-width:2px,color:#831843;
-    classDef s5 fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#065f46;
-    class S1 s1;
-    class S2 s2;
-    class S3 s3;
-    class S4 s4;
-    class S5 s5;
+    S1 -.->|"Has Portfolio"| S3
 ```
+
+* **1. Candidate Intake (`IntakeScreen.tsx`):** In-memory local regex PII stripping (DPDP Act 2023) + role gap isolation.
+* **2. Spec Kanban (`KanbanScreen.tsx`):** 3-sprint engineering tasks with acceptance criteria & deliverable code.
+* **3. Oral Viva (`VivaScreen.tsx`):** Browser speech recognition, animated audio waveform, and trade-off defense.
+* **4. Authorship Confirmation (`ConfirmationScreen.tsx`):** Git commit signatures, live healthcheck ping, and SHA-256 seal.
+* **5. Recruiter Dossier (`RecruiterCardScreen.tsx`):** 94/100 Day-Zero score, code-to-business translation, and ATS webhook.
 
 ---
 
