@@ -20,18 +20,20 @@
 
 ## 1. Product Positioning & Strategic Vision
 
+> *Figure 1 — System positioning: TalentForge as an integrated technical verification layer within existing hiring platforms.*
+
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#f8fafc', 'primaryBorderColor': '#94a3b8', 'primaryTextColor': '#0f172a', 'lineColor': '#64748b', 'fontFamily': 'Inter, ui-sans-serif, system-ui, sans-serif'}, 'flowchart': {'curve': 'basis'}}}%%
 flowchart TD
-    P["<b>EXISTING HIRING PLATFORM</b><br/>ATS / Job Portal / HR Platform"]
-    TF["<b>TALENTFORGE</b><br/>Technical Verification Layer"]
-    S["<b>VERIFIED TECHNICAL SIGNAL</b>"]
+    classDef neutral fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a,rx:8,ry:8
+    classDef accent fill:#2563eb,stroke:#1d4ed8,stroke-width:2.5px,color:#ffffff,rx:8,ry:8
+
+    P["<b>EXISTING HIRING PLATFORM</b><br/>ATS / Job Portal / HR Platform"]:::neutral
+    TF["<b>TALENTFORGE</b><br/>Technical Verification Layer"]:::accent
+    S["<b>VERIFIED TECHNICAL SIGNAL</b>"]:::neutral
 
     P --> TF
     TF --> S
-
-    style P fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
-    style TF fill:#2563eb,stroke:#1d4ed8,stroke-width:2.5px,color:#ffffff
-    style S fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
 ```
 
 * **Candidates:** Demonstrate technical understanding
@@ -50,21 +52,22 @@ flowchart TD
 
 ## 3. The Verification Workflow
 
+> *Figure 2 — Technical verification workflow: 5-step pipeline from platform intake through oral code defense to verified signal return.*
+
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#f8fafc', 'primaryBorderColor': '#94a3b8', 'primaryTextColor': '#0f172a', 'lineColor': '#64748b', 'fontFamily': 'Inter, ui-sans-serif, system-ui, sans-serif'}, 'flowchart': {'curve': 'basis'}}}%%
 flowchart LR
-    S1["<b>01 INTAKE</b><br/>Requirements + evidence"]
-    S2["<b>02 SPEC</b><br/>Role-specific technical task"]
-    S3["<b>03 BUILD / ANALYZE</b><br/>Create or inspect technical evidence"]
-    S4["<b>04 DEFEND</b><br/>Explain technical decisions"]
-    S5["<b>05 VERIFY</b><br/>Recruiter-ready result"]
+    classDef neutral fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a,rx:8,ry:8
+    classDef accent fill:#2563eb,stroke:#1d4ed8,stroke-width:2.5px,color:#ffffff,rx:8,ry:8
+
+    S1["<b>01 INTAKE</b><br/>Requirements + evidence"]:::neutral
+    S2["<b>02 SPEC</b><br/>Role-specific technical task"]:::neutral
+    S3["<b>03 BUILD / ANALYZE</b><br/>Create or inspect technical evidence"]:::neutral
+    S4["<b>04 DEFEND</b><br/>Explain technical decisions"]:::accent
+    S5["<b>05 VERIFY</b><br/>Recruiter-ready result"]:::neutral
 
     S1 --> S2 --> S3 --> S4 --> S5
-
-    style S1 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
-    style S2 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
-    style S3 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
-    style S4 fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#0f172a
-    style S5 fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
+    S5 -.->|"Verified signal"| S1
 ```
 
 ---
