@@ -99,8 +99,8 @@ flowchart LR
 
 ```bash
 # 1. Clone the repository and navigate to the frontend directory
-git clone https://github.com/your-username/talent-forge.git
-cd talent-forge/frontend
+git clone https://github.com/qaxxam-dev/talent-forge-demo.git
+cd talent-forge-demo
 
 # 2. Install dependencies
 npm install
